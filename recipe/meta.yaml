@@ -6,22 +6,22 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/son-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/son-{{ version }}.tar.gz
   sha256: d4f7afb24e9b532b428d6ef35a3bd778ad93e0c97b7f5e72857dc2b0d8439ae5
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 2
+  number: 3
 
 requirements:
   host:
-    - python >=3.5
+    - python {{ python_min }}
     - poetry >=0.12
     - poetry-core
     - pip
   run:
-    - python >=3.5
+    - python >={{ python_min }}
     - lz >=0.11.0,<0.12.0
 
 test:
@@ -31,6 +31,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://flokno.github.io/son/
