@@ -32,7 +32,9 @@ tests:
       imports:
         - son
       pip_check: true
-      python_version: ${{ python_min }}
+      python_version:
+        - ${{ python_min }}
+        - "*"
 
 about:
   summary: Tools to read and write .son files
